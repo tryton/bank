@@ -9,8 +9,9 @@ __all__ = ['Party', 'PartyReplace']
 
 class Party(metaclass=PoolMeta):
     __name__ = 'party.party'
-    bank_accounts = fields.Many2Many('bank.account-party.party', 'owner',
-        'account', 'Bank Accounts')
+    bank_accounts = fields.Many2Many(
+        'bank.account-party.party', 'owner', 'account', "Bank Accounts",
+        filter=[('active', '=', True)])
 
     @classmethod
     def search_rec_name(cls, name, clause):
